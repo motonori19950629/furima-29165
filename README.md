@@ -20,16 +20,16 @@
 
 ## items テーブル
 
-| Column        | Type      | Options                        | 
-| ------------- | --------- | ------------------------------ | 
-| name          | string    | null: false                    | 
-| price         | integer   | null: false                    | 
-| user          | reference | null: false, foreign_key: true | 
-| category      | string    | null: false                    | 
-| status        | string    | null: false                    | 
-| delivery_fee  | string    | null: false                    | 
-| place_from    | string    | null: false                    | 
-| date_shipment | string    | null: false                    | 
+| Column           | Type      | Options                        | 
+| ---------------- | --------- | ------------------------------ | 
+| name             | string    | null: false                    | 
+| price            | integer   | null: false                    | 
+| user             | reference | null: false, foreign_key: true | 
+| category_id      | integer   | null: false                    | 
+| status_id        | integer   | null: false                    | 
+| delivery_fee_id  | integer   | null: false                    | 
+| place_from_id    | integer   | null: false                    | 
+| date_shipment_id | integer   | null: false                    | 
 
 ### Association
 
@@ -42,7 +42,6 @@
 | ------- | ---------- | ------------------------------ | 
 | item    | references | null: false, foreign_key: true | 
 | user    | references | null: false, foreign_key: true | 
-| address | references | null: false, foreign_key: true | 
 
 ### Association
 
@@ -57,9 +56,9 @@
 | purchase       | references | null: false, foreign_key: true | 
 | postal_code    | string     | null: false                    | 
 | prefecture_id  | integer    | null: false                    | 
-| city_id        | integer    | null: false                    | 
+| city           | string     | null: false                    | 
 | street_address | text       | null: false                    | 
-| building       | text       | null: false                    | 
+| building       | text       |                                | 
 | phone_number   | string     | null: false                    | 
 
 ### Association
