@@ -5,13 +5,13 @@
 | Column            | Type   | Option      | 
 | ----------------- | ------ | ----------- | 
 | nickname          | string | null: false | 
-| email              | string | null: false | 
+| email             | string | null: false | 
 | password          | string | null: false | 
 | kanji_family_name | string | null: false | 
 | kanji_first_name  | string | null: false | 
 | kana_family_name  | string | null: false | 
 | kana_first_name   | string | null: false | 
-| birthday          | string | null: false | 
+| birthday          | date   | null: false | 
 
 ### Association
 
@@ -25,6 +25,7 @@
 | name             | string    | null: false                    | 
 | price            | integer   | null: false                    | 
 | user             | reference | null: false, foreign_key: true | 
+| detail           | text      | null: false                    | 
 | category_id      | integer   | null: false                    | 
 | status_id        | integer   | null: false                    | 
 | delivery_fee_id  | integer   | null: false                    | 
@@ -36,7 +37,7 @@
 - belongs_to :user
 - has_one :purchase
 
-## purchase テーブル
+## purchases テーブル
 
 | Column  | Type       | Options                        | 
 | ------- | ---------- | ------------------------------ | 
@@ -47,9 +48,9 @@
 
 - belongs_to :item
 - belongs_to :user
-- belongs_one :address
+- has_one :address
 
-## address テーブル
+## addresses テーブル
 
 | Column         | Type       | Options                        | 
 | -------------- | ---------- | ------------------------------ | 
@@ -57,8 +58,8 @@
 | postal_code    | string     | null: false                    | 
 | prefecture_id  | integer    | null: false                    | 
 | city           | string     | null: false                    | 
-| street_address | text       | null: false                    | 
-| building       | text       |                                | 
+| street_address | string     | null: false                    | 
+| building       | string     |                                | 
 | phone_number   | string     | null: false                    | 
 
 ### Association
