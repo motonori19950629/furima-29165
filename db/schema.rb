@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_01_072920) do
+ActiveRecord::Schema.define(version: 2020_09_03_140624) do
+
+  create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "price", null: false
+    t.bigint "user_id"
+    t.text "detail", null: false
+    t.integer "category_id", null: false
+    t.integer "status_id", null: false
+    t.integer "delivery_fee_id", null: false
+    t.integer "place_from_id", null: false
+    t.integer "date_shipment_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_items_on_user_id"
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -18,17 +33,17 @@ ActiveRecord::Schema.define(version: 2020_09_01_072920) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "nickname", null: false
-    t.string "password", null: false
-    t.string "kanji_family_name", null: false
-    t.string "kanji_first_name", null: false
-    t.string "kana_family_name", null: false
-    t.string "kana_first_name", null: false
-    t.date "birthday", null: false
+    t.string "nickname"
+    t.string "kanji_family_name"
+    t.string "kanji_first_name"
+    t.string "kana_family_name"
+    t.string "kana_first_name"
+    t.date "birthday"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "items", "users"
 end
