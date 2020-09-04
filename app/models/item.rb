@@ -5,13 +5,14 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   with_options presence: true do
+    validates :image
     validates :name
     validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
     validates :detail
     validates :category_id
     validates :status_id
     validates :delivery_fee_id
-    validates :place_from
+    validates :place_from_id
     validates :date_shipment_id
   end
 
