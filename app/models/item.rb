@@ -3,7 +3,9 @@ class Item < ApplicationRecord
   has_one_attached :image
   belongs_to_active_hash :prefecture
   has_one_attached :image
+  belongs_to :user
 
+  
   with_options presence: true do
     validates :image
     validates :name

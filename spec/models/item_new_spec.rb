@@ -3,8 +3,15 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
   describe '#create' do
     before do
-      @item = FactoryBot.build(:item)
-      @item.image = fixture_file_upload('public/images/test_image.png')
+      # @item.image = 'aaa'
+      @item.name = 'aaa'
+      @item.detail = 'aaa'
+      @item.category_id = 1
+      @item.status_id = 1
+      @item.delivery_fee_id = 1
+      @item.place_from_id = 1
+      @item.date_shipment_id = 1
+      @item.price = 1000
     end
 
     it '全てで保存可能' do
@@ -32,13 +39,13 @@ RSpec.describe Item, type: :model do
     it 'カテゴリー必須' do
       @item.category_id = 0
       @item.valid?
-      expect(@item.errors.full_messages).to include("Category must be other than 0")
+      expect(@item.errors.full_messages).to include("Category can't be blank")
     end
 
     it '状態必須' do
       @item.status_id = 0
       @item.valid?
-      expect(@item.errors.full_messages).to include("Status must be other than 0")
+      expect(@item.errors.full_messages).to include("Status can't be blank")
     end
 
     it '配送料の負担' do
@@ -60,7 +67,7 @@ RSpec.describe Item, type: :model do
     end
 
     it '販売価格空白' do
-      @item.price = nil
+      @item.price = 0
       @item.valid?
       expect(@item.errors.full_messages).to include("Price can't be blank")
     end
