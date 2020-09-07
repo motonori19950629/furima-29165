@@ -5,7 +5,6 @@ class Item < ApplicationRecord
   has_one_attached :image
   belongs_to :user
 
-  
   with_options presence: true do
     validates :image
     validates :name
@@ -18,12 +17,11 @@ class Item < ApplicationRecord
     validates :date_shipment_id
   end
 
-  with_options numericality: { other_than: 0 }  do
+  with_options numericality: { other_than: 0 } do
     validates :category_id
     validates :status_id
     validates :delivery_fee_id
     validates :place_from_id
     validates :date_shipment_id
   end
-
 end
