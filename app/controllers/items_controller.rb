@@ -2,7 +2,11 @@ class ItemsController < ApplicationController
   before_action :move_to_index, only: [:new, :create]
 
   def index
+    #@tweets = Tweet.includes(:user).order("created_at DESC")
+    # query = "SELECT * FROM items"
+    @items = Item.all #find_by_sql(query)
   end
+
 
   def new
     @item = Item.new
