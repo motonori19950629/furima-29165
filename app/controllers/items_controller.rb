@@ -2,11 +2,9 @@ class ItemsController < ApplicationController
   before_action :move_to_index, only: [:new, :create]
 
   def index
-    #@tweets = Tweet.includes(:user).order("created_at DESC")
-    # query = "SELECT * FROM items"
-    @items = Item.all #find_by_sql(query)
+    @items = Item.all
+    @purchases = Purchase.includes(:item_id)
   end
-
 
   def new
     @item = Item.new
@@ -15,7 +13,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.create(item_params)
     if @item.valid?
-      @item.save  # バリデーションをクリアした時
+      @item.save # バリデーションをクリアした時
       redirect_to root_path
     else
       render 'new'    # バリデーションに弾かれた時
