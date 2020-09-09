@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :move_to_index, only: [:new, :create]
 
   def index
+    @items = Item.all.includes(:purchase).order(created_at: :desc)
   end
 
   def new
@@ -9,9 +10,9 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.create(item_params)
+    @item = Item.new(item_params)
     if @item.valid?
-      @item.save  # バリデーションをクリアした時
+      @item.save # バリデーションをクリアした時
       redirect_to root_path
     else
       render 'new'    # バリデーションに弾かれた時
