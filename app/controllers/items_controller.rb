@@ -28,6 +28,12 @@ class ItemsController < ApplicationController
     @date_shipment = DateShipment.data[@item.date_shipment_id][:name]
   end
 
+  def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    redirect_to root_path
+  end
+
   private
 
   def item_params
