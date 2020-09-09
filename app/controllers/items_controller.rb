@@ -2,8 +2,7 @@ class ItemsController < ApplicationController
   before_action :move_to_index, only: [:new, :create]
 
   def index
-    @items = Item.all
-    @purchases = Purchase.includes(:item_id)
+    @items = Item.all.includes(:purchase).order(created_at: :desc)
   end
 
   def new
