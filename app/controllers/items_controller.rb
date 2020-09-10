@@ -36,6 +36,8 @@ class ItemsController < ApplicationController
     else
       render 'show'    # バリデーションに弾かれた時
     end
+  end
+
   def edit
   end
 
