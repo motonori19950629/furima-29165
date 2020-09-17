@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :move_to_index, only: [:new, :create]
 
   def index
-    @items = Item.all.includes(:purchase).order(created_at: :desc)
+    @items = Item.all.order(created_at: :desc)
   end
 
   def new
@@ -27,7 +27,6 @@ class ItemsController < ApplicationController
     @prefecture = Prefecture.data[@item.place_from_id][:name]
     @date_shipment = DateShipment.data[@item.date_shipment_id][:name]
   end
-
 
   def destroy
     @item = Item.find(params[:id])

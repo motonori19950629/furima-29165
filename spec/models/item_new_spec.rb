@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
   describe '#create' do
     before do
-      # @item.image = 'aaa'
       @item.name = 'aaa'
       @item.detail = 'aaa'
       @item.category_id = 1
