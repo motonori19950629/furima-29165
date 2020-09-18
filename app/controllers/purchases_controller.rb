@@ -1,4 +1,8 @@
 class PurchasesController < ApplicationController
+
+  before_action :move_to_index
+  before_action :move_to_root
+
   def index
     @item = Item.find(params[:item_id])
     @purchase = Purchase.new
@@ -34,4 +38,16 @@ class PurchasesController < ApplicationController
       currency: 'jpy'                 # 通貨の種類(日本円)
     )
   end
+
+  def move_to_index
+    redirect_to new_user_session_path unless user_signed_in?
+  end
+
+  def move_to_root
+    @item = Item.find(params[:item_id])
+    if current_user.id == @item.user_id
+      redirect_to root_path
+    end
+  end
+
 end
