@@ -3,14 +3,13 @@ class PurchasesAddress
   include ActiveModel::Model
   attr_accessor :token, :user_id, :item_id, :postal_code, :prefecture_id, :city, :street_address, :building, :purchase_id, :phone_number
 
-  validates :token, presence: true
 
   with_options presence: true do
+    validates :token
     validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/}
-    validates :prefecture_id
+    validates :prefecture_id, numericality: { other_than: 0 } 
     validates :city
     validates :street_address
-    validates :building
     validates :phone_number, format: { with:/\A\d{10}$|^\d{11}\z/}
   end
 
