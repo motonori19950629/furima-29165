@@ -25,25 +25,25 @@ RSpec.describe PurchasesAddress, type: :model do
     it '郵便番号ハイフン無し' do
       @purchases_address.postal_code = '1111111'
       @purchases_address.valid?
-      expect(@purchases_address.errors.full_messages).to include("Postal code is invalid")
+      expect(@purchases_address.errors.full_messages).to include('Postal code is invalid')
     end
 
     it '郵便番号桁足りない' do
       @purchases_address.postal_code = '111-111'
       @purchases_address.valid?
-      expect(@purchases_address.errors.full_messages).to include("Postal code is invalid")
+      expect(@purchases_address.errors.full_messages).to include('Postal code is invalid')
     end
 
     it '郵便番号全角' do
       @purchases_address.postal_code = '１１１ー１１１１'
       @purchases_address.valid?
-      expect(@purchases_address.errors.full_messages).to include("Postal code is invalid")
+      expect(@purchases_address.errors.full_messages).to include('Postal code is invalid')
     end
 
     it '都道府県選択しない(--)' do
-      @purchases_address.prefecture_id = "0"
+      @purchases_address.prefecture_id = '0'
       @purchases_address.valid?
-      expect(@purchases_address.errors.full_messages).to include("Prefecture must be other than 0")
+      expect(@purchases_address.errors.full_messages).to include('Prefecture must be other than 0')
     end
 
     it '市町村無し' do
@@ -65,16 +65,15 @@ RSpec.describe PurchasesAddress, type: :model do
     end
 
     it '電話番号桁足りない(９桁以下）' do
-      @purchases_address.phone_number = "111111111"
+      @purchases_address.phone_number = '111111111'
       @purchases_address.valid?
-      expect(@purchases_address.errors.full_messages).to include("Phone number is invalid")
+      expect(@purchases_address.errors.full_messages).to include('Phone number is invalid')
     end
 
     it '電話番号全角' do
-      @purchases_address.phone_number = "１１１１１１１１１１１"
+      @purchases_address.phone_number = '１１１１１１１１１１１'
       @purchases_address.valid?
-      expect(@purchases_address.errors.full_messages).to include("Phone number is invalid")
+      expect(@purchases_address.errors.full_messages).to include('Phone number is invalid')
     end
-
   end
 end

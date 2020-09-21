@@ -1,5 +1,4 @@
 class PurchasesController < ApplicationController
-
   before_action :move_to_index
   before_action :move_to_root
 
@@ -14,7 +13,7 @@ class PurchasesController < ApplicationController
     if @purchase.valid?
       pay_item
       @purchase.save
-      return redirect_to root_path
+      redirect_to root_path
     else
       render 'index'
     end
@@ -23,9 +22,20 @@ class PurchasesController < ApplicationController
   private
 
   def purchase_params
-    params.require(:purchases_address
-    ).permit(:postal_code, :prefecture_id, :city, :street_address, :building, :purchase_id, :phone_number
-    ).merge(token: params[:token], user_id: current_user.id, item_id: params[:item_id]
+    params.require(
+      :purchases_address
+    ).permit(
+      :postal_code,
+      :prefecture_id,
+      :city,
+      :street_address,
+      :building,
+      :purchase_id,
+      :phone_number
+    ).merge(
+      token: params[:token],
+      user_id: current_user.id,
+      item_id: params[:item_id]
     )
   end
 
@@ -45,9 +55,6 @@ class PurchasesController < ApplicationController
 
   def move_to_root
     @item = Item.find(params[:item_id])
-    if current_user.id == @item.user_id
-      redirect_to root_path
-    end
+    redirect_to root_path if current_user.id == @item.user_id
   end
-
 end

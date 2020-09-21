@@ -6,5 +6,4 @@ class Address < ApplicationRecord
     validates :city
     validates :street_address
   end
-
 end
