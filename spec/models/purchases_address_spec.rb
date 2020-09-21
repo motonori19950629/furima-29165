@@ -75,5 +75,11 @@ RSpec.describe PurchasesAddress, type: :model do
       @purchases_address.valid?
       expect(@purchases_address.errors.full_messages).to include('Phone number is invalid')
     end
+
+    it '電話番号ハイフンあり' do
+      @purchases_address.phone_number = '111-1111-1111'
+      @purchases_address.valid?
+      expect(@purchases_address.errors.full_messages).to include('Phone number is invalid')
+    end
   end
 end

@@ -8,18 +8,11 @@ const pay = () => {
     const formData = new FormData(formResult);
 
     const card = {
-      // number: formData.get("purchases_address[number]"),
-      // cvc: formData.get("purchases_address[cvc]"),
-      // exp_month: formData.get("purchases_address[exp_month]"),
-      // exp_year: `20${formData.get("purchases_address[exp_year]")}`,
-
       number: formData.get("purchases_address[number]"),
       cvc: formData.get("purchases_address[cvc]"),
       exp_month: formData.get("purchases_address[exp_month]"),
       exp_year: `20${formData.get("purchases_address[exp_year]")}`,
     };
-
-    console.log(card)
 
     Payjp.createToken(card, (status, response) => {
       
@@ -36,11 +29,8 @@ const pay = () => {
 
         document.getElementById("charge-form").submit();
         document.getElementById("charge-form").reset();
-        console.log(token)
-        debugger
       } else{
         const token = null
-        console.log(token)
         document.getElementById("charge-form").submit();
         document.getElementById("charge-form").reset();
         

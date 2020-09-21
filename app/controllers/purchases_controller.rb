@@ -1,15 +1,14 @@
 class PurchasesController < ApplicationController
   before_action :move_to_index
   before_action :move_to_root
+  before_action :obtain_item_id, only: [:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
     @purchase = PurchasesAddress.new
   end
 
   def create
     @purchase = PurchasesAddress.new(purchase_params)
-    @item = Item.find(params[:item_id])
     if @purchase.valid?
       pay_item
       @purchase.save
@@ -56,5 +55,9 @@ class PurchasesController < ApplicationController
   def move_to_root
     @item = Item.find(params[:item_id])
     redirect_to root_path if current_user.id == @item.user_id
+  end
+
+  def obtain_item_id
+    @item = Item.find(params[:item_id])
   end
 end
